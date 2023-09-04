@@ -1,13 +1,13 @@
-import imgLogo from "../../assets/sig.png";
+import imgLogo from "../../assets/logoStartSIG.png";
 import React from "react";
 import { FaUserAlt } from "react-icons/fa";
 
 const Header = () => {
   return (
     <header className="w-780 flex flex-col">
-      <div className="bg-[#ccf7f5] flex justify-between px-5 items-center">
+      <div className="bg-[#ccf7f5] flex justify-between px-5 items-center py-5">
         <div>
-          <img src={imgLogo} alt="" className="w-10" />
+          <img src={imgLogo} alt="" className="w-20 " />
         </div>
         <nav>
           <ul className="flex justify between gap-5 items-center">
