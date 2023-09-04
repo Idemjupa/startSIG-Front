@@ -2,7 +2,8 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className="bg-[#142338] text-white flex justify-around">
+      
       <div>
         <div>
           <img src="" alt="Logo" />
