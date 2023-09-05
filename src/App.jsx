@@ -1,10 +1,9 @@
 import "./App.css";
-import HomeWeb from "./Pages/InfoWeb/HomeWeb";
-
+import InfoWeb from "./Routes/infoweb";
 function App() {
   return (
     <>
-      <HomeWeb  />
+      <InfoWeb />
     </>
   );
 }

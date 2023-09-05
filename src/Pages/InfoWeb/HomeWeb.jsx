@@ -23,7 +23,7 @@ const HomeWeb = () => {
           <div className="flex justify-around mt-5">
             <div className="tarjeta">
               <div className="imgTarjeta">
-                <img src={imgTarjeta01} alt="Imagen Tarjeta" />
+                <img src={imgTarjeta01} alt="Imagen Tarjeta" className="object-cover" width="250"/>
               </div>
               <h2 className="font-bold">ISO 9001</h2>
               <p>
@@ -35,10 +35,10 @@ const HomeWeb = () => {
               <FaArrowAltCircleRight className="float-right" size="30" />
             </div>
             <div className="tarjeta">
-              <div className="imgTarjeta">
-                <img src={imgTarjeta02} alt="Imagen Tarjeta" />
+              <div className="imgTarjeta ">
+                <img src={imgTarjeta02} alt="Imagen Tarjeta" className="object-cover"/>
               </div>
-              <h2 className="font-bold">ISO 9001</h2>
+              <h2 className="font-bold">ISO 14001</h2>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Voluptatum quasi expedita aspernatur commodi a repellendus dicta
@@ -48,10 +48,10 @@ const HomeWeb = () => {
               <FaArrowAltCircleRight className="float-right" size="30" />
             </div>
             <div className="tarjeta">
-              <div className="imgTarjeta">
-                <img src={imgTarjeta03} alt="Imagen Tarjeta" />
+              <div className="imgTarjeta ">
+                <img src={imgTarjeta03} alt="Imagen Tarjeta" className="object-cover " width="200" />
               </div>
-              <h2 className="font-bold">ISO 9001</h2>
+              <h2 className="font-bold">ISO 45001</h2>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Voluptatum quasi expedita aspernatur commodi a repellendus dicta

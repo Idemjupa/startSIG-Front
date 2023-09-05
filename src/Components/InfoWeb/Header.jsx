@@ -1,18 +1,19 @@
 import imgLogo from "../../assets/logoStartSIG.png";
 import React from "react";
 import { FaUserAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <header className="w-780 flex flex-col">
-      <div className="bg-[#ccf7f5] flex justify-between px-5 items-center py-5">
+    <header className="flex flex-col">
+      <div className=" flex justify-between px-5 items-center py-2">
         <div>
-          <img src={imgLogo} alt="" width="150"/>
+          <img src={imgLogo} alt="" width="100" />
         </div>
         <nav>
           <ul className="flex justify between gap-5 items-center">
-            <li className="cursor-pointer  hover:text-gray-500">Ingresar</li>
-            <li className="cursor-pointer  hover:text-gray-500"> Contacto</li>
+            <li className="cursor-pointer  hover:text-gray-500"><Link to="/login"> Ingresar </Link> </li>
+            <li className="cursor-pointer  hover:text-gray-500"> <Link to="/presupuesto"> Presupuesto </Link> </li>
             <li className="cursor-pointer  hover:text-gray-500">FAQ</li>
             <li>
               <div className="bg-[#cddcf7] rounded-full w-12 h-12 flex justify-center items-center cursor-pointer ">
