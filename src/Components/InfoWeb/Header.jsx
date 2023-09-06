@@ -8,7 +8,7 @@ const Header = () => {
     <header className="flex flex-col">
       <div className=" flex justify-between px-5 items-center py-2">
         <div>
-          <img src={imgLogo} alt="" width="100" />
+          <img src={imgLogo} alt="" width="200" />
         </div>
         <nav>
           <ul className="flex justify between gap-5 items-center">
