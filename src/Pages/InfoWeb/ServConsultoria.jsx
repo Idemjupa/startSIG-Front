@@ -1,10 +1,8 @@
-import React from "react";
 import Header from "../../Components/InfoWeb/Header";
 import Footer from "../../Components/InfoWeb/Footer";
 import imgBody from "../../assets/servicios/long-consultoria.jpg";
 import imgBody2 from "../../assets/servicios/long-consultoria2.jpg";
-import imgBody3 from  "../../assets/servicios/shor-consultoria.jpg"
-
+import imgBody3 from "../../assets/servicios/shor-consultoria.jpg";
 
 const ServConsultoria = () => {
   return (
@@ -30,9 +28,7 @@ const ServConsultoria = () => {
         </div>
         <h2>Consultoria Emprearial de Negocios</h2>
         <div className="flex justify between py-5">
-        
           <div>
-            
             <p className="text-justify mr-10">
               En la actualidad, aquella empresa que realmente desea mantenerse
               un el actual mercado marcado por su alta competitividad, tiene la
@@ -53,7 +49,7 @@ const ServConsultoria = () => {
             </p>
           </div>
           <div>
-            <img src={ imgBody3} alt=""  width="7000"/>
+            <img src={imgBody3} alt="" width="7000" />
           </div>
         </div>
       </main>

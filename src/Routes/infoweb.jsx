@@ -13,7 +13,6 @@ import PrivateRoutes from "./PrivateRoutes";
 import DashBoard from "../Pages/SwMejora/DashBoard";
 import PresupuestoLista from "../Pages/InfoWeb/PresupuestoLista";
 
-
 const InfoWeb = () => {
   return (
     <BrowserRouter>
@@ -28,7 +27,7 @@ const InfoWeb = () => {
         <Route path="/cer-14001" element={<CerISO14001 />} />
         <Route path="/cer-45001" element={<CerISO45001 />} />
         <Route path="/cer-9001" element={<CerISO9001 />} />
-        <Route path ="/presupuesto-lista" element={<PresupuestoLista />}/>
+        <Route path="/presupuesto-lista" element={<PresupuestoLista />} />
         <Route element={<PrivateRoutes />}>
           <Route path="/swm-dashboard" element={<DashBoard />} />
         </Route>
