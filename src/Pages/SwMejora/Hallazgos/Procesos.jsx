@@ -1,9 +1,14 @@
-import React from 'react'
+
+
+
+import React from "react";
 
 const Procesos = () => {
   return (
-    <div>Procesos</div>
-  )
-}
+    <>
+      Hola
+    </>
+  );
+};
 
-export default Procesos
+export default Procesos;

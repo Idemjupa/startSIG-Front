@@ -12,6 +12,9 @@ import CerISO9001 from "../Pages/InfoWeb/CerISO9001";
 import PrivateRoutes from "./PrivateRoutes";
 import DashBoard from "../Pages/SwMejora/DashBoard";
 import PresupuestoLista from "../Pages/InfoWeb/PresupuestoLista";
+import MenuHallazgos from "../Components/SwMejora/MenuHallazgos";
+import Procesos from "../Pages/SwMejora/Hallazgos/Procesos";
+
 
 const InfoWeb = () => {
   return (
@@ -29,8 +32,12 @@ const InfoWeb = () => {
         <Route path="/cer-9001" element={<CerISO9001 />} />
         <Route path="/presupuesto-lista" element={<PresupuestoLista />} />
         <Route element={<PrivateRoutes />}>
-          <Route path="/swm-dashboard" element={<DashBoard />} />
+          
         </Route>
+        <Route path="/swm-dashboard" element={<DashBoard />} />
+        <Route path="/swm-hallazgos" element={<MenuHallazgos />} />
+        <Route path="/swm-procesos" element={<Procesos />} />
+
       </Routes>
     </BrowserRouter>
   );

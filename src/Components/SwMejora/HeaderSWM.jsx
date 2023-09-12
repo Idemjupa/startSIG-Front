@@ -37,7 +37,7 @@ const Header = () => {
           </nav>
         </div>
 
-        <div className="bg-[#db392e]  ">
+        <div className="bg-[#db0034]  ">
           <nav>
             <ul className="flex justify-around items-center px-5 py-5 text-white">
               <li className="cursor-pointer  hover:text-gray-500">
