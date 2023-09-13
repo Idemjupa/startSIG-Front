@@ -35,7 +35,7 @@ const SolicitaPpto = () => {
     <section className="border rounded-xl max-w-md	max-h-none flex flex-col items-center mx-auto mt-10 py-9">
       <div className="bg-white ">
         <div>
-          <Link to="/home">
+          <Link to="/">
             <img src={imgLogo} alt="" width="300" />
           </Link>
         </div>

@@ -27,7 +27,7 @@ const Header = () => {
       <div className="bg-[#142338]  ">
         <nav >
           <ul className="flex justify-around items-center px-5 py-5 text-white">
-            <li className="cursor-pointer  hover:text-gray-500"><Link to="/home">Inicio</Link> </li>
+            <li className="cursor-pointer  hover:text-gray-500"><Link to="/">Inicio</Link> </li>
             <li className="cursor-pointer  hover:text-gray-500">Nosotros</li>
             <li className="cursor-pointer  hover:text-gray-500"><Link to="/serv-consultoria"> Servicios</Link></li>
             <li className="cursor-pointer  hover:text-gray-500">Certificación</li>

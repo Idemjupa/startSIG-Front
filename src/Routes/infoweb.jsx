@@ -20,7 +20,7 @@ const InfoWeb = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/home" element={<PinfoWEb />} />
+        <Route path="/" element={<PinfoWEb />} />
         <Route path="/login" element={<Plogin />} />
         <Route path="/presupuesto" element={<PsolPpto />} />
         <Route path="/serv-consultoria" element={<ServConsultoria />} />
