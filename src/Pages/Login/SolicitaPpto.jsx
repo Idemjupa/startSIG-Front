@@ -27,8 +27,8 @@ const SolicitaPpto = () => {
   const handleEnviar = (e) => {
     e.preventDefault();
     addPresupuesto(form);    
-    Swal.fire("Se enviaron los datos correctamente");
-    navigate("/home");
+    // Swal.fire("Se enviaron los datos correctamente");
+    // navigate("/home");
   };
 
   return (
