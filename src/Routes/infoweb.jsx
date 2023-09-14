@@ -14,6 +14,7 @@ import DashBoard from "../Pages/SwMejora/DashBoard";
 import PresupuestoLista from "../Pages/InfoWeb/PresupuestoLista";
 import MenuHallazgos from "../Components/SwMejora/MenuHallazgos";
 import Procesos from "../Pages/SwMejora/Hallazgos/Procesos";
+import SwMejora from "./SwMejora";
 
 
 const InfoWeb = () => {
@@ -35,8 +36,9 @@ const InfoWeb = () => {
           
         </Route>
         <Route path="/swm-dashboard" element={<DashBoard />} />
-        <Route path="/swm-hallazgos" element={<MenuHallazgos />} />
+        {/* <Route path="/swm-hallazgos" element={<MenuHallazgos />} /> */}
         <Route path="/swm-procesos" element={<Procesos />} />
+        <Route path="/swm*" element={ <SwMejora />}/>
 
       </Routes>
     </BrowserRouter>

@@ -1,35 +1,25 @@
 import React, { useEffect, useState } from "react";
 
 const usePresupuesto = () => {
-  // const [presupuesto, setPresupuesto] = useState([
-  //   JSON.parse(localStorage.getItem("ppto")) || {},
-  // ]);
-  const [presupuesto, setPresupuesto] = useState([]);
-
+  const [envioDatos, setEnvioDatos] = useState([]);
+  
   useEffect(() => {
-    // let datosExtraidos = localStorage.getItem("ppto");
-    // console.log("Resetee");
-    // if (datosExtraidos === null) {
-    //   setPresupuesto([]);
-    // } else {
-    //   setPresupuesto(JSON.parse(datosExtraidos));
-    // }
+    const datosRecuperados = localStorage.getItem("ppto");
+    if (datosRecuperados) {
+      setEnvioDatos(JSON.parse(localStorage.getItem("ppto")));
+    }
   }, []);
 
-  console.log("Aqui", presupuesto);
-
   const addPresupuesto = (ppto) => {
-    if (presupuesto.length === 0) {
-      console.log("Ingrese !");
-      setPresupuesto(prevent=>[
-        ...prevent, ppto
-      ]);
-    }
-
-    localStorage.setItem("ppto", JSON.stringify(presupuesto));
-    console.log("Otro", presupuesto);
+    setEnvioDatos((prev) => [...prev, ppto]);
   };
-  // presupuesto
+
+  useEffect(() => {
+    if (envioDatos.length !== 0) {
+      localStorage.setItem("ppto", JSON.stringify(envioDatos));
+    }
+  }, [envioDatos]);
+
   return { addPresupuesto };
 };
 
