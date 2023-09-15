@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ProcesosModal from "./ProcesosModal";
 
 const Procesos = () => {
+  const [modal, setModal] = useState(false);
   const [procesos, setProceso] = useState([
     {
       id: "",
@@ -11,22 +12,26 @@ const Procesos = () => {
       fyhregistro: null,
     },
   ]);
+
   const fetchProcesos = () => {
-    setProceso(JSON.parse(localStorage.getItem("proceso")));
+    setProceso(JSON.parse(localStorage.getItem("procesos")));
   };
 
   useEffect(() => {
     fetchProcesos();
-  }, []);
+  }, [modal]);
 
-  const handleAddProceso = () => {};
+  const handleAddProceso = () => {
+    setModal(true);
+  };
   return (
     <>
       <h2>PROCESOS</h2>
-      <button className="" onClick={handleAddProceso}>
-        {" "}
-        Agregar usuraio{" "}
+      <div className="flex justify-end">
+      <button className="mt-2 bg-[#5e9efc] text-white w-none p-2 drop-shadow-md" onClick={handleAddProceso}>
+        Agregar usuraio
       </button>
+      </div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -83,7 +88,7 @@ const Procesos = () => {
           </tbody>
         </table>
       </div>
-      <ProcesosModal />
+      {modal && <ProcesosModal modal={modal} setModal={setModal}/>}
     </>
   );
 };

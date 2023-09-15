@@ -16,7 +16,6 @@ import MenuHallazgos from "../Components/SwMejora/MenuHallazgos";
 import Procesos from "../Pages/SwMejora/Hallazgos/Procesos";
 import SwMejora from "./SwMejora";
 
-
 const InfoWeb = () => {
   return (
     <BrowserRouter>
@@ -33,13 +32,12 @@ const InfoWeb = () => {
         <Route path="/cer-9001" element={<CerISO9001 />} />
         <Route path="/presupuesto-lista" element={<PresupuestoLista />} />
         <Route element={<PrivateRoutes />}>
-          
+          <Route path="/swm-dashboard" element={<DashBoard />} />
+          <Route path="/swm*" element={<SwMejora />} />
         </Route>
-        <Route path="/swm-dashboard" element={<DashBoard />} />
-        {/* <Route path="/swm-hallazgos" element={<MenuHallazgos />} /> */}
-        <Route path="/swm-procesos" element={<Procesos />} />
-        <Route path="/swm*" element={ <SwMejora />}/>
 
+        {/* <Route path="/swm-hallazgos" element={<MenuHallazgos />} /> */}
+        {/* <Routes path="/swm-procesos" element={<Procesos />} /> */}
       </Routes>
     </BrowserRouter>
   );

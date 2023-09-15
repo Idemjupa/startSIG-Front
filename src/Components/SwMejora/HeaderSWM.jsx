@@ -41,7 +41,7 @@ const Header = () => {
           <nav>
             <ul className="flex justify-around items-center px-5 py-5 text-white">
               <li className="cursor-pointer  hover:text-gray-500">
-                <Link to="/home">Gestion de Hallazgos</Link>{" "}
+                <Link to="/swm">Gestion de Hallazgos</Link>{" "}
               </li>
               <li className="cursor-pointer  hover:text-gray-500">
                 Documentación

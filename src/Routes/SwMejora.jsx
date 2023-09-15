@@ -6,8 +6,7 @@ import Procesos from "../Pages/SwMejora/Hallazgos/Procesos";
 import Criterios from "../Pages/SwMejora/Hallazgos/Criterios";
 import Origenes from "../Pages/SwMejora/Hallazgos/Origenes";
 import Niveles from "../Pages/SwMejora/Hallazgos/Niveles";
-import usuarios from "../Pages/SwMejora/Hallazgos/usuarios";
-
+import Usuarios from "../Pages/SwMejora/Hallazgos/Usuarios";
 
 const SwMejora = () => {
   return (
@@ -17,14 +16,13 @@ const SwMejora = () => {
         <div>
           <MenuHallazgos />
         </div>
-        <div className="bg-[#5e9efc] w-full pt-2" >
-          <Routes>
+        <div className="w-full pt-2 relative">            
+          <Routes>                        
             <Route path="swm-procesos" element={<Procesos />} />
             <Route path="swm-criterios" element={<Criterios />} />
             <Route path="swm-origenes" element={<Origenes />} />
             <Route path="swm-niveles" element={<Niveles />} />
-            <Route path="swm-usuarios" element={<usuarios />} />
-
+            <Route path="swm-usuarios" element={<Usuarios />} />
           </Routes>
         </div>
       </div>

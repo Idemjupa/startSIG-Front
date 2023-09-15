@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import usePresupuesto from "../../Hooks/usePresupuesto";
 
 const SolicitaPpto = () => {
-  const { addPresupuesto , presupuesto} = usePresupuesto();
+  const { addPresupuesto } = usePresupuesto();
   const [form, setForm] = useState({
     entidad: "",
     email: "",
@@ -27,8 +27,8 @@ const SolicitaPpto = () => {
   const handleEnviar = (e) => {
     e.preventDefault();
     addPresupuesto(form);    
-    // Swal.fire("Se enviaron los datos correctamente");
-    // navigate("/home");
+    Swal.fire("Se enviaron los datos correctamente");
+    navigate("/");
   };
 
   return (
