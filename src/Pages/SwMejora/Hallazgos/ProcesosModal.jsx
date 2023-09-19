@@ -1,24 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useId } from "react";
 
-const ProcesosModal = ({ modal, setModal }) => {
-  const [form, setForm] = useState({
-    id: "",
-    codigo: "",
-    proceso: "",
-    responsable: "",
-    flgmacroproceso: false,
-    macroproceso: "",
-  });
+const ProcesosModal = ({ modal, setModal, idProceso, setIdProceso }) => {
+  const [form, setForm] = useState(
+    idProceso || {
+      id: "",
+      codigo: "",
+      proceso: "",
+      responsable: "",
+      flgmacroproceso: false,
+      macroproceso: "",
+    }
+  );
+  const newId = useId();
   const handleChange = (e) => {
     const input = e.target;
     const name = input.name;
     const value = input.value;
     setForm({ ...form, [name]: value });
   };
+
   const handleAddProceso = () => {
-    const dataexiste = JSON.parse(localStorage.getItem("procesos")) || [];
-    const nuevo = [...dataexiste, form];
-    localStorage.setItem("procesos", JSON.stringify(nuevo));
+    const dataexiste = JSON.parse(localStorage.getItem("procesosList")) || [];
+    let nuevo = [];
+    if (form.id === undefined || form.id === "") {
+      form.id = newId;
+      nuevo = [...dataexiste, form];
+    } else {
+      console.log("Here", dataexiste);
+      nuevo = dataexiste.map((current) => {
+        if (form.id !== current.id) return current;
+        return form;
+      });
+    }
+    localStorage.setItem("procesosList", JSON.stringify(nuevo));
     handleLimpiar();
   };
 
@@ -32,10 +46,12 @@ const ProcesosModal = ({ modal, setModal }) => {
       macroproceso: "",
     });
     setModal(false);
+    setIdProceso(0);
   };
+
   return (
-    <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none ">
-      <div className="border rounded-xl max-w-2xl gap-5 max-h-none flex flex-col items-center mx-auto mt-10 px-20 py-5 bg-[#abc] drop-shadow-lg">
+    <div className="flex justify-center items-start overflow-x-hidden overflow-y-auto absolute inset-0 z-50 outline-none focus:outline-none bg-[#cddcf7]  ">
+      <div className="border rounded-xl max-w-2xl gap-5 max-h-none flex flex-col items-center mx-auto mt-5 px-20 py-5 bg-[#abc] drop-shadow-lg ">
         <h2>PROCESOS-EDICION</h2>
         <input
           className="drop-shadow-md p-2 border"
@@ -44,6 +60,7 @@ const ProcesosModal = ({ modal, setModal }) => {
           placeholder="Id"
           value={form.id}
           onChange={handleChange}
+          disabled="True"
         />
         <input
           className="drop-shadow-md p-2 border"

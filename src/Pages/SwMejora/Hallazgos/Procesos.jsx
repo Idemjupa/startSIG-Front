@@ -1,94 +1,156 @@
 import React, { useEffect, useState } from "react";
 import ProcesosModal from "./ProcesosModal";
+import DataTable from "react-data-table-component";
+import Swal from "sweetalert2";
 
 const Procesos = () => {
+  const [procesos, setProceso] = useState([]);
   const [modal, setModal] = useState(false);
-  const [procesos, setProceso] = useState([
+  const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState([]);
+  const [idProceso, setIdProceso] = useState({});
+  const columns = [
     {
-      id: "",
-      codigo: "",
-      proceso: "",
-      usrcontrol: "",
-      fyhregistro: null,
+      name: "Id",
+      selector: (row) => row.id,
     },
-  ]);
+    {
+      name: "Codigo",
+      selector: (row) => row.codigo,
+    },
+    {
+      name: "Proceso",
+      selector: (row) => row.proceso,
+    },
+    {
+      name: "usrControl",
+      selector: (row) => row.usrcontrol,
+    },
+    {
+      name: "fyhRegistro",
+      selector: (row) => row.fyhregistro,
+    },
+    {
+      name: "Action",
+      cell: (row) => (
+        <div className="flex gap-2">
+          <button className="btn btn-edit" onClick={() => handleEdit(row)}>
+            Editar
+          </button>
+          <button className="btn btn-edit" onClick={() => handleDelete(row.id)}>
+            Eliminar
+          </button>
+        </div>
+      ),
+    },
+  ];
 
   const fetchProcesos = () => {
-    setProceso(JSON.parse(localStorage.getItem("procesos")));
+    const nuevo = JSON.parse(localStorage.getItem("procesosList")) || [];
+    setProceso(nuevo);
+    setFilter(nuevo);
   };
 
   useEffect(() => {
     fetchProcesos();
   }, [modal]);
 
+  useEffect(() => {
+    if (search !== "") {
+      const result = procesos.filter((item) => {
+        return item.proceso.toLowerCase().match(search.toLocaleLowerCase());
+      });
+      setFilter(result);
+    } else {
+      fetchProcesos();
+    }
+  }, [search]);
+
+  const handleEdit = (row) => {
+    setModal(true);
+    setIdProceso(row);
+  };
+
+  const handleDelete = (value) => {
+    Swal.fire({
+      title: "¿Estas Seguro?",
+      text: "No podras revertir el cambio una vez ralizdo!",
+      icon: "Advertencia",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, Eliminalo!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const nuevo = procesos.filter((row) => row.id !== value);
+        setProceso(nuevo);
+        setFilter(nuevo);
+        localStorage.setItem("procesosList", JSON.stringify(nuevo));
+
+        Swal.fire("Eliminar!", "Tu archivo ha sido eliminaar .", "Eliminado");
+      }
+    });
+  };
+
   const handleAddProceso = () => {
     setModal(true);
   };
+
+  const tableHeaderStyle = {
+    headCells: {
+      style: {
+        fontWeight: "bold",
+        fontSize: "14px",
+        backgroundColor: "#ccc",
+      },
+    },
+  };
+
   return (
     <>
       <h2>PROCESOS</h2>
       <div className="flex justify-end">
-      <button className="mt-2 bg-[#5e9efc] text-white w-none p-2 drop-shadow-md" onClick={handleAddProceso}>
-        Agregar usuraio
-      </button>
+        <button
+          className="mt-2 bg-[#5e9efc] text-white w-none p-2 drop-shadow-md"
+          onClick={handleAddProceso}
+        >
+          Agregar Proceso
+        </button>
       </div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
-        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-              <th scope="col" className="px-6 py-3">
-                Id
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Código
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Proceso
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Usrcontrol
-              </th>
-              <th scope="col" className="px-6 py-3">
-                fyhRegistro
-              </th>
-              <th scope="col" className="px-6 py-3">
-                <span className="sr-only">Marcar</span>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {procesos &&
-              procesos.map((p, i) => {
-                return (
-                  <tr
-                    key={i}
-                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600"
-                  >
-                    <th
-                      scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                    >
-                      {p.id}
-                    </th>
-                    <td className="px-6 py-4">{p.codigo}</td>
-                    <td className="px-6 py-4">{p.proceso}</td>
-                    <td className="px-6 py-4">{p.usrcontrol}</td>
-                    <td className="px-6 py-4">{p.fyhservicio}</td>
-                    <td className="px-6 py-4 text-right">
-                      <a
-                        href="#"
-                        className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                      >
-                        Editar
-                      </a>
-                    </td>
-                  </tr>
-                );
-              })}
-          </tbody>
-        </table>
+        <DataTable
+          customStyles={tableHeaderStyle}
+          columns={columns}
+          data={filter}
+          pagination
+          // selectableRows
+
+          fixedHeader
+          selectableRowsHighlight
+          highlightOnHover
+          actions={<button>Exportar a PDF</button>}
+          subHeader
+          subHeaderComponent={
+            <input
+              className="w-25"
+              type="text"
+              placeholder="Buscar"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          }
+        />
       </div>
-      {modal && <ProcesosModal modal={modal} setModal={setModal}/>}
+      <div>
+        {modal && (
+          <ProcesosModal
+            modal={modal}
+            setModal={setModal}
+            idProceso={idProceso}
+            setIdProceso={setIdProceso}
+          />
+        )}
+      </div>
     </>
   );
 };
