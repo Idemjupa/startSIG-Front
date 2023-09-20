@@ -9,6 +9,7 @@ const Procesos = () => {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState([]);
   const [idProceso, setIdProceso] = useState({});
+
   const columns = [
     {
       name: "Id",
@@ -117,8 +118,9 @@ const Procesos = () => {
           Agregar Proceso
         </button>
       </div>
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-5 ml-5">
         <DataTable
+
           customStyles={tableHeaderStyle}
           columns={columns}
           data={filter}
@@ -128,17 +130,18 @@ const Procesos = () => {
           fixedHeader
           selectableRowsHighlight
           highlightOnHover
-          actions={<button>Exportar a PDF</button>}
+          // actions={<button onClick={handleCSV}>Exportar a PDF</button>}
           subHeader
           subHeaderComponent={
             <input
-              className="w-25"
+              className="w-25 "
               type="text"
               placeholder="Buscar"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
           }
+          subHeaderAlign="left"
         />
       </div>
       <div>

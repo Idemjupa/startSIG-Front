@@ -54,7 +54,7 @@ const ProcesosModal = ({ modal, setModal, idProceso, setIdProceso }) => {
       <div className="border rounded-xl max-w-2xl gap-5 max-h-none flex flex-col items-center mx-auto mt-5 px-20 py-5 bg-[#abc] drop-shadow-lg ">
         <h2>PROCESOS-EDICION</h2>
         <input
-          className="drop-shadow-md p-2 border"
+          className="drop-shadow-md p-2 border w-full"
           type="text"
           name="id"
           placeholder="Id"
@@ -63,15 +63,16 @@ const ProcesosModal = ({ modal, setModal, idProceso, setIdProceso }) => {
           disabled="True"
         />
         <input
-          className="drop-shadow-md p-2 border"
+          className="drop-shadow-md p-2 border w-full"
           type="text"
           name="codigo"
           placeholder="Código"
           value={form.codigo}
           onChange={handleChange}
+          required
         />
         <input
-          className="drop-shadow-md p-2 border"
+          className="drop-shadow-md p-2 border w-full"
           type="text"
           name="proceso"
           placeholder="Proceso"
@@ -79,7 +80,7 @@ const ProcesosModal = ({ modal, setModal, idProceso, setIdProceso }) => {
           onChange={handleChange}
         />
         <select
-          className="drop-shadow-md p-2 border"
+          className="drop-shadow-md p-2 border w-full"
           name="responsable"
           id=""
           value={form.responsable}
@@ -90,7 +91,7 @@ const ProcesosModal = ({ modal, setModal, idProceso, setIdProceso }) => {
           </option>
           <option value="jc">Juan Cruz</option>
         </select>
-        <div>
+        <div >
           <input
             className="drop-shadow-md p-2 border"
             type="checkbox"
@@ -101,7 +102,7 @@ const ProcesosModal = ({ modal, setModal, idProceso, setIdProceso }) => {
           Es MacroProceso
         </div>
         <select
-          className="drop-shadow-md p-2 border"
+          className="drop-shadow-md p-2 border w-full"
           name="macroproceso"
           id=""
           value={form.macroproceso}
@@ -127,7 +128,6 @@ const ProcesosModal = ({ modal, setModal, idProceso, setIdProceso }) => {
           </button>
         </div>
       </div>
-      /
     </div>
   );
 };
