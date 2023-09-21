@@ -15,8 +15,6 @@ const PresupuestoLista = () => {
 
   const fetchPresupuestos = () => {
     setPresupuestos(JSON.parse(localStorage.getItem("ppto")));
-
-    console.log("Vamo a ver", presupuestos);
   };
 
   useEffect(() => {
