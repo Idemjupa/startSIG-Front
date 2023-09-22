@@ -1,11 +1,9 @@
-import React,{useState, useEffect} from 'react'
-import CriteriosModal from './CriteriosModal';
-import DataTable from 'react-data-table-component';
-import Swal from 'sweetalert2';
+import React, { useState, useEffect } from "react";
+import CriteriosModal from "./CriteriosModal";
+import DataTable from "react-data-table-component";
+import Swal from "sweetalert2";
 
 const Criterios = () => {
-
-  
   const [criterios, setCriterio] = useState([]);
   const [modal, setModal] = useState(false);
   const [search, setSearch] = useState("");
@@ -110,7 +108,6 @@ const Criterios = () => {
       </div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-5 ml-5">
         <DataTable
-
           customStyles={tableHeaderStyle}
           columns={columns}
           data={filter}
@@ -146,8 +143,6 @@ const Criterios = () => {
       </div>
     </>
   );
+};
 
-
-}
-
-export default Criterios
+export default Criterios;

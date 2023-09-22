@@ -18,14 +18,19 @@ const Header = () => {
       <header className="flex flex-col">
         <div className=" flex justify-between px-5 items-center py-2">
           <div>
-            <img src={imgLogo} alt="" width="200" />
+            <Link to ="/">
+              <img src={imgLogo} alt="" width="200" />
+            </Link>
           </div>
           <nav>
             <ul className="flex justify between gap-5 items-center">
               <li className="cursor-pointer  hover:text-gray-500 flex flex-col text-right">
                 <span className="text-[#142338]"> {user.username} </span>
 
-                <button className="font-bold" onClick={handleLogOut}> Cerrar Sesion </button>
+                <button className="font-bold" onClick={handleLogOut}>
+                  {" "}
+                  Cerrar Sesion{" "}
+                </button>
               </li>
               <li>
                 <div className="bg-[#cddcf7] rounded-full w-12 h-12 flex justify-center items-center cursor-pointer ">
@@ -44,10 +49,10 @@ const Header = () => {
                 <Link to="/swm">Gestion de Hallazgos</Link>{" "}
               </li>
               <li className="cursor-pointer  hover:text-gray-500">
-                Documentación
+                Documentación [Comming Soon]
               </li>
               <li className="cursor-pointer  hover:text-gray-500">
-                <Link to="/serv-consultoria"> Auditorias</Link>
+                Auditorias [Comming Soon]
               </li>
             </ul>
           </nav>

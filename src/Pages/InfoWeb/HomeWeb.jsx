@@ -10,9 +10,9 @@ const HomeWeb = () => {
   return (
     <>
       <Header />
-      <hr />
+      
 
-      <main>
+      <main className="max-w-screen-xl mx-auto">
         <div>
           <div>
             <img src={imgBody} alt="Imagen Larga" />

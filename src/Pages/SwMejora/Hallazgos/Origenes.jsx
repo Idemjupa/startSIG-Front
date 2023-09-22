@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import OrigenesModal from "./OrigenesModal";
+import OrigenesModal from "./OrigenesModal.jsx";
 import DataTable from "react-data-table-component";
 import Swal from "sweetalert2";
 

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <header className="flex flex-col">
+    <header className="flex flex-col max-w-screen-xl mx-auto	">
       <div className=" flex justify-between px-5 items-center py-2">
         <div>
           <img src={imgLogo} alt="" width="200" />

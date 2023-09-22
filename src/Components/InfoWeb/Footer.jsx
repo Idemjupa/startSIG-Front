@@ -5,7 +5,7 @@ import { FaFacebookMessenger, FaWhatsapp, FaTelegramPlane, FaYoutube } from "rea
 
 const Footer = () => {
   return (
-    <footer className="bg-[#142338] text-white flex justify-around py-12">
+    <footer className="bg-[#142338] text-white flex justify-around py-12 max-w-screen-xl mx-auto	">
       <div>
         <div>
           <img src={imgLogo} alt="Logo" width="200" />

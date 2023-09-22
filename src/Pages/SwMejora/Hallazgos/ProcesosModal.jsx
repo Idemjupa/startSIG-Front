@@ -1,16 +1,22 @@
 import React, { useEffect, useState, useId } from "react";
+import Select from "react-select";
 
 const ProcesosModal = ({ modal, setModal, idProceso, setIdProceso }) => {
+  const today = new Date();
   const [form, setForm] = useState(
     idProceso || {
       id: "",
       codigo: "",
       proceso: "",
       responsable: "",
+      responsableid: "",
       flgmacroproceso: false,
       macroproceso: "",
+      fyhregistro: today,
     }
   );
+  const [usuarios, setUsuarios] = useState([]);
+  const [value, setValue] = useState(null);
   const newId = useId();
   const handleChange = (e) => {
     const input = e.target;
@@ -22,6 +28,9 @@ const ProcesosModal = ({ modal, setModal, idProceso, setIdProceso }) => {
   const handleAddProceso = () => {
     const dataexiste = JSON.parse(localStorage.getItem("procesosList")) || [];
     let nuevo = [];
+    form.fyhregistro = today;
+    form.responsableid = value.value;
+    form.responsable = value.label;
     if (form.id === undefined || form.id === "") {
       form.id = newId;
       nuevo = [...dataexiste, form];
@@ -48,6 +57,17 @@ const ProcesosModal = ({ modal, setModal, idProceso, setIdProceso }) => {
     setModal(false);
     setIdProceso(0);
   };
+  const fetchUsuarios = () => {
+    const users = JSON.parse(localStorage.getItem("usuariosList")) || [];
+    setUsuarios([]);
+    users.map((u) => {
+      const objeto = { value: u.id, label: u.apellidos + " " + u.nombres };
+      setUsuarios((prev) => [...prev, objeto]);
+    });
+  };
+  useEffect(() => {
+    fetchUsuarios();
+  }, []);
 
   return (
     <div className="flex justify-center items-start overflow-x-hidden overflow-y-auto absolute inset-0 z-50 outline-none focus:outline-none bg-[#cddcf7]  ">
@@ -79,19 +99,31 @@ const ProcesosModal = ({ modal, setModal, idProceso, setIdProceso }) => {
           value={form.proceso}
           onChange={handleChange}
         />
-        <select
+        <Select
+          className="w-full text-left"
+          options={usuarios}
+          defaultValue={value}
+          placeholder="Selecciona Usuario"
+          onChange={setValue}
+        />
+
+        {/* <select
           className="drop-shadow-md p-2 border w-full"
           name="responsable"
           id=""
           value={form.responsable}
           onChange={handleChange}
         >
+
           <option value="vacio" selected>
             Selecciona un responsble
           </option>
-          <option value="jc">Juan Cruz</option>
-        </select>
-        <div >
+          {usuarios &&
+            usuarios.map((u) => {
+              return(<option key={u.id} value="jc" > {u.apellidos +" "+ u.nombres} </option>)
+            })}
+        </select> */}
+        {/* <div >
           <input
             className="drop-shadow-md p-2 border"
             type="checkbox"
@@ -112,7 +144,7 @@ const ProcesosModal = ({ modal, setModal, idProceso, setIdProceso }) => {
             Selecciona un Macro Proceso
           </option>
           <option value="pe01">PE 01 GC FACTURACION</option>
-        </select>
+        </select> */}
         <div className="flex gap-5">
           <button
             className="mt-2 bg-[#5e9efc] text-white w-none p-2 drop-shadow-md"

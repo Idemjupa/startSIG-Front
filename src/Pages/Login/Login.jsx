@@ -1,11 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import imgLogo from "../../assets/logoStartSIG.png";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useAuth from "../../Hooks/useAutenticacion";
 import { Autenticacion } from "../../Services/Login/Autenticacion";
 
 const Login = () => {
-  const { setAuth } = useAuth();
+  const { setAuth, isAuth } = useAuth();
   const navigate = useNavigate();
 
   const [form, setForm] = useState({ username: "", password: "", image: "" });
@@ -20,12 +20,18 @@ const Login = () => {
     e.preventDefault();
     const data = await Autenticacion({
       username: form.username,
-      password: form.password      
+      password: form.password,
     });
     setAuth(data);
     setForm({ username: "", password: "" });
     navigate("/swm-dashboard");
   };
+
+  useEffect(() => {
+    if (isAuth) {
+      navigate("/swm-dashboard");
+    }
+  }, []);
 
   return (
     <section className="border rounded-xl max-w-sm	 max-h-none flex flex-col items-center mx-auto mt-20 py-9">

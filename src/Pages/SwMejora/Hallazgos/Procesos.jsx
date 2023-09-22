@@ -10,6 +10,7 @@ const Procesos = () => {
   const [filter, setFilter] = useState([]);
   const [idProceso, setIdProceso] = useState({});
 
+
   const columns = [
     {
       name: "Id",
@@ -24,8 +25,8 @@ const Procesos = () => {
       selector: (row) => row.proceso,
     },
     {
-      name: "usrControl",
-      selector: (row) => row.usrcontrol,
+      name: "Responsable",
+      selector: (row) => row.responsable,
     },
     {
       name: "fyhRegistro",
@@ -120,7 +121,6 @@ const Procesos = () => {
       </div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-5 ml-5">
         <DataTable
-
           customStyles={tableHeaderStyle}
           columns={columns}
           data={filter}
