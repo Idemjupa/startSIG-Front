@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PinfoWEb from "../Pages/InfoWeb/HomeWeb";
 import Plogin from "../Pages/Login/Login";
@@ -12,8 +12,8 @@ import CerISO9001 from "../Pages/InfoWeb/CerISO9001";
 import PrivateRoutes from "./PrivateRoutes";
 import DashBoard from "../Pages/SwMejora/DashBoard";
 import PresupuestoLista from "../Pages/InfoWeb/PresupuestoLista";
-import MenuHallazgos from "../Components/SwMejora/MenuHallazgos";
-import Procesos from "../Pages/SwMejora/Hallazgos/Procesos";
+// import MenuHallazgos from "../Components/SwMejora/MenuHallazgos";
+// import Procesos from "../Pages/SwMejora/Hallazgos/Procesos";
 import SwMejora from "./SwMejora";
 
 const InfoWeb = () => {
@@ -33,7 +33,7 @@ const InfoWeb = () => {
         <Route path="/presupuesto-lista" element={<PresupuestoLista />} />
         <Route element={<PrivateRoutes />}>
           <Route path="/swm-dashboard" element={<DashBoard />} />
-          <Route path="/swm*" element={<SwMejora />} />
+          <Route path="/swm/*" element={<SwMejora />} />
         </Route>
 
         {/* <Route path="/swm-hallazgos" element={<MenuHallazgos />} /> */}

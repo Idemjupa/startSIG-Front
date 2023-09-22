@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import Header from "./HeaderSWM";
+import  { useState } from "react";
+// import Header from "./HeaderSWM";
 import { Link } from "react-router-dom";
 
 const MenuHallazgos = () => {
@@ -17,8 +17,8 @@ const MenuHallazgos = () => {
           <ul className="text-left px-5 mb-5 menu">
             <li
               className={
-                menuSeleccionado === 1 &&
-                "font-bold text-slate-200 underline underline-offset-1"
+                menuSeleccionado === 1 ?
+                "font-bold text-slate-200 underline underline-offset-1":""
               }
             >
               {" "}
@@ -28,8 +28,8 @@ const MenuHallazgos = () => {
             </li>
             <li
               className={
-                menuSeleccionado === 2 &&
-                "font-bold text-slate-200 underline underline-offset-1"
+                menuSeleccionado === 2 ?
+                "font-bold text-slate-200 underline underline-offset-1":""
               }
             >
               {" "}
@@ -40,8 +40,8 @@ const MenuHallazgos = () => {
             </li>
             <li
               className={
-                menuSeleccionado === 3 &&
-                "font-bold text-slate-200 underline underline-offset-1"
+                menuSeleccionado === 3 ?
+                "font-bold text-slate-200 underline underline-offset-1":""
               }
             >
               {" "}
@@ -52,8 +52,8 @@ const MenuHallazgos = () => {
             </li>
             <li
               className={
-                menuSeleccionado === 4 &&
-                "font-bold text-slate-200 underline underline-offset-1"
+                menuSeleccionado === 4 ?
+                "font-bold text-slate-200 underline underline-offset-1":""
               }
             >
               {" "}
@@ -64,8 +64,8 @@ const MenuHallazgos = () => {
             </li>
             <li
               className={
-                menuSeleccionado === 5 &&
-                "font-bold text-slate-200 underline underline-offset-1"
+                menuSeleccionado === 5 ?
+                "font-bold text-slate-200 underline underline-offset-1":""
               }
             >
               {" "}
@@ -79,8 +79,8 @@ const MenuHallazgos = () => {
           <ul className="text-left px-5 mb-5 menu">
             <li
               className={
-                menuSeleccionado === 6 &&
-                "font-bold text-slate-200 underline underline-offset-1"
+                menuSeleccionado === 6 ?
+                "font-bold text-slate-200 underline underline-offset-1":""
               }
             >
               {" "}
@@ -94,8 +94,8 @@ const MenuHallazgos = () => {
           <ul className="text-left px-5 menu">
             <li
               className={
-                menuSeleccionado === 7 &&
-                "font-bold text-slate-200 underline underline-offset-1"
+                menuSeleccionado === 7 ?
+                "font-bold text-slate-200 underline underline-offset-1":""
               }
             >
               {" "}
