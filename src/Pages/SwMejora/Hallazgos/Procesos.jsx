@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import ProcesosModal from "./ProcesosModal";
 import DataTable from "react-data-table-component";
 import Swal from "sweetalert2";
