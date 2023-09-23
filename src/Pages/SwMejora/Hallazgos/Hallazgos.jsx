@@ -20,20 +20,45 @@ const Hallazgos = () => {
       selector: (row) => row.fecha,
     },
     {
+      name: "ProcesoId",
+      selector: (row) => row.procesoid,
+      omit:"True"
+    },
+    {
       name: "Proceso",
       selector: (row) => row.proceso,
+    },
+    {
+      name: "Nivelid",
+      selector: (row) => row.nivelid,
+      omit:"True"
     },
     {
       name: "Nivel",
       selector: (row) => row.nivel,
     },
     {
+      name: "Origenid",
+      selector: (row) => row.origenid,
+      omit:"True"
+    },
+    {
       name: "Origen",
       selector: (row) => row.origen,
     },
     {
+      name: "Criterioid",
+      selector: (row) => row.criterioid,
+      omit:"True"
+    },
+    {
       name: "Criterio",
       selector: (row) => row.criterio,
+    },
+    {
+      name: "Auditorid",
+      selector: (row) => row.auditorid,
+      omit:"True"
     },
     {
       name: "Auditor",

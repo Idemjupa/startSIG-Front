@@ -1,4 +1,3 @@
-import React from "react";
 import Header from "../Components/SwMejora/HeaderSWM";
 import MenuHallazgos from "../Components/SwMejora/MenuHallazgos";
 import { Routes, Route } from "react-router-dom";
