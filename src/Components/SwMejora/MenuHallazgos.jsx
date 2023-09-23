@@ -69,7 +69,7 @@ const MenuHallazgos = () => {
               }
             >
               {" "}
-              <Link onClick={() => handleMenu(5)} to="swm-usuarios">
+              <Link onClick={() => handleMenu(5)} to="swm-responsables">
                 {" "}
                 Responsables
               </Link>

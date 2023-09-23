@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useId } from "react";
+import  { useEffect, useState, useId } from "react";
 
-export const UsuarioModal = ({ modal, setModal, idUsuario, setIdUsuario }) => {
+export const ResponsableModal = ({ modal, setModal, idUsuario, setIdUsuario }) => {
   const [form, setForm] = useState(
     idUsuario || {
       id: "",

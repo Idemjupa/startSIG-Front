@@ -5,9 +5,10 @@ import Procesos from "../Pages/SwMejora/Hallazgos/Procesos";
 import Criterios from "../Pages/SwMejora/Hallazgos/Criterios";
 import Origenes from "../Pages/SwMejora/Hallazgos/Origenes";
 import Niveles from "../Pages/SwMejora/Hallazgos/Niveles";
-import Usuarios from "../Pages/SwMejora/Hallazgos/Usuarios";
+
 import Hallazgos from "../Pages/SwMejora/Hallazgos/Hallazgos";
 import Reportes from "../Pages/SwMejora/Hallazgos/Reportes";
+import Responsables from "../Pages/SwMejora/Hallazgos/Responsables";
 
 const SwMejora = () => {
   return (
@@ -24,7 +25,7 @@ const SwMejora = () => {
             <Route path="swm-criterios" element={<Criterios />} />
             <Route path="swm-origenes" element={<Origenes />} />
             <Route path="swm-niveles" element={<Niveles />} />
-            <Route path="swm-usuarios" element={<Usuarios />} />
+            <Route path="swm-responsables" element={<Responsables />} />
             <Route path="swm-hallazgos" element={<Hallazgos />} />
             <Route path="swm-reportes" element={<Reportes />} />            
           </Routes>

@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import Swal from "sweetalert2";
-import { UsuarioModal } from "./UsuarioModal";
+import { ResponsableModal } from "./ResponsablesModal";
 
 
-const Usuarios = () => {
+
+const Responsables = () => {
 
   const [usuarios, setUsuario] = useState([]);
   const [modal, setModal] = useState(false);
@@ -143,7 +144,7 @@ const Usuarios = () => {
       </div>
       <div>
         {modal && (
-          <UsuarioModal
+          <ResponsableModal
             modal={modal}
             setModal={setModal}
             idUsuario={idUsuario}
@@ -156,4 +157,4 @@ const Usuarios = () => {
 
 }
 
-export default Usuarios
+export default Responsables
