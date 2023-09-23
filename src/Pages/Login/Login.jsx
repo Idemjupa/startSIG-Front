@@ -60,7 +60,7 @@ const Login = () => {
             onChange={handleChange}
           />
           <span className="text-xs text-left mt-1">
-            ¿Ovidaste tu Contraseña?
+            {/* ¿Ovidaste tu Contraseña? */}
           </span>
           <input
             type="submit"

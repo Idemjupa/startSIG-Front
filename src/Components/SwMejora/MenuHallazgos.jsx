@@ -90,7 +90,7 @@ const MenuHallazgos = () => {
               </Link>
             </li>
           </ul>
-          <h3>REPORTES</h3>
+          <h3>PRESUPUESTO</h3>
           <ul className="text-left px-5 menu">
             <li
               className={
@@ -99,9 +99,9 @@ const MenuHallazgos = () => {
               }
             >
               {" "}
-              <Link onClick={() => handleMenu(7)} to="swm-reportes">
+              <Link onClick={() => handleMenu(7)} to="swm-presupuesto">
                 {" "}
-                Reportar{" "}
+                Presupuesto{" "}
               </Link>
             </li>
           </ul>

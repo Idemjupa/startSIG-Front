@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Header from "../../Components/SwMejora/HeaderSWM";
 
 const PresupuestoLista = () => {
   const [presupuestos, setPresupuestos] = useState([
@@ -14,7 +13,7 @@ const PresupuestoLista = () => {
   ]);
 
   const fetchPresupuestos = () => {
-    setPresupuestos(JSON.parse(localStorage.getItem("ppto")));
+    setPresupuestos(JSON.parse(localStorage.getItem("ppto")) || presupuestos);
   };
 
   useEffect(() => {
@@ -27,7 +26,7 @@ const PresupuestoLista = () => {
 
   return (
     <div>
-      <Header />
+      
       <h2>Presupuestos Solicitados</h2>
 
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
@@ -71,21 +70,13 @@ const PresupuestoLista = () => {
                   <td className="px-6 py-4">{p.celular}</td>
                   <td className="px-6 py-4">{p.nrotrabajadores}</td>
                   <td className="px-6 py-4">{p.servicio}</td>
-                  <td className="px-6 py-4">{p.norma}</td>
-                  <td className="px-6 py-4 text-right">
-                    <a
-                      href="#"
-                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                    >
-                      Marcar
-                    </a>
-                  </td>
+                  <td className="px-6 py-4">{p.norma}</td>                  
                 </tr>
               );
             })}
           </tbody>
         </table>
-        <button onClick={handleEliminarPresupuesto}> Eliminar todo </button>
+        {/* <button onClick={handleEliminarPresupuesto}> Eliminar todo </button> */}
       </div>
     </div>
   );

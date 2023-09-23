@@ -9,6 +9,7 @@ import Niveles from "../Pages/SwMejora/Hallazgos/Niveles";
 import Hallazgos from "../Pages/SwMejora/Hallazgos/Hallazgos";
 import Reportes from "../Pages/SwMejora/Hallazgos/Reportes";
 import Responsables from "../Pages/SwMejora/Hallazgos/Responsables";
+import PresupuestoLista from "../Pages/InfoWeb/PresupuestoLista";
 
 const SwMejora = () => {
   return (
@@ -28,7 +29,8 @@ const SwMejora = () => {
             <Route path="swm-responsables" element={<Responsables />} />
             <Route path="swm-hallazgos" element={<Hallazgos />} />
             <Route path="swm-reportes" element={<Reportes />} />            
-          </Routes>
+            <Route path="swm-presupuesto" element={<PresupuestoLista />} />            
+          </Routes>          
         </div>
       </div>
     </>

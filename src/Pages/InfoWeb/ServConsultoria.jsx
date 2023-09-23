@@ -8,7 +8,7 @@ const ServConsultoria = () => {
   return (
     <>
       <Header />
-      <main>
+      <main className="max-w-screen-xl mx-auto" >
         <div className="relative">
           <div className="flex justify-center ">
             <img

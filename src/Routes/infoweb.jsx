@@ -23,6 +23,7 @@ const InfoWeb = () => {
         <Route path="/" element={<PinfoWEb />} />
         <Route path="/login" element={<Plogin />} />
         <Route path="/presupuesto" element={<PsolPpto />} />
+        
         <Route path="/serv-consultoria" element={<ServConsultoria />} />
         <Route path="/serv-auditoria" element={<ServAuditoria />} />
         <Route path="/serv-swmejora" element={<ServSwMejora />} />
