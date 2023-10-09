@@ -12,13 +12,13 @@ const MenuHallazgos = () => {
   return (
     <>
       <div className="flex">
-        <div className="bg-[#db392e] text-white py-5 min-h-screen pl-5">
-          <h3> CATALOGOS</h3>
+        <div className="bg-[white] text-gray py-5 min-h-screen pl-5">
+          <h3 className="text-left"> CATALOGOS</h3>
           <ul className="text-left px-5 mb-5 menu">
             <li
               className={
                 menuSeleccionado === 1 ?
-                "font-bold text-slate-200 underline underline-offset-1":""
+                "font-bold pb-2 text-green-500 underline underline-offset-1 bg-green-50":""
               }
             >
               {" "}
@@ -29,7 +29,7 @@ const MenuHallazgos = () => {
             <li
               className={
                 menuSeleccionado === 2 ?
-                "font-bold text-slate-200 underline underline-offset-1":""
+                "font-bold pb-2 text-green-500 underline underline-offset-1 bg-green-50":""
               }
             >
               {" "}
@@ -75,7 +75,7 @@ const MenuHallazgos = () => {
               </Link>
             </li>
           </ul>
-          <h3>HALLAZGOS</h3>
+          <h3 className="text-left">HALLAZGOS</h3>
           <ul className="text-left px-5 mb-5 menu">
             <li
               className={
@@ -90,7 +90,7 @@ const MenuHallazgos = () => {
               </Link>
             </li>
           </ul>
-          <h3>PRESUPUESTO</h3>
+          <h3 className="text-left">PRESUPUESTO</h3>
           <ul className="text-left px-5 menu">
             <li
               className={

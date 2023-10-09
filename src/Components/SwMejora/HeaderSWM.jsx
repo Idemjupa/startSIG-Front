@@ -1,4 +1,4 @@
-import imgLogo from "../../assets/logoStartSIG.png";
+import imgLogo from "../../assets/LOGO SIG principal negativo.png";
 import React from "react";
 import { FaUserAlt } from "react-icons/fa";
 import { Link, Navigate, Outlet, useNavigate } from "react-router-dom";
@@ -16,14 +16,29 @@ const Header = () => {
   return (
     <>
       <header className="flex flex-col">
-        <div className=" flex justify-between px-5 items-center py-2">
+        <div className=" flex justify-between px-5 items-center py-2 bg-[#db0034]  ">
           <div>
-            <Link to ="/">
+            <Link to="/">
               <img src={imgLogo} alt="" width="200" />
             </Link>
           </div>
-          <nav>
-            <ul className="flex justify between gap-5 items-center">
+          <div className="w-full">
+            <nav >
+              <ul className="flex justify-around items-center px-5 py-5 text-white  ">
+                <li className="cursor-pointer  hover:text-gray-500">
+                  <Link to="/swm">Gestion de Hallazgos</Link>{" "}
+                </li>
+                <li className="cursor-pointer  hover:text-gray-500">
+                  Documentación [Comming Soon]
+                </li>
+                <li className="cursor-pointer  hover:text-gray-500">
+                  Auditorias [Comming Soon]
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <nav className="w-64">
+            <ul className="flex justify-between gap-5 items-center">
               <li className="cursor-pointer  hover:text-gray-500 flex flex-col text-right">
                 <span className="text-[#142338]"> {user.username} </span>
 
@@ -37,22 +52,6 @@ const Header = () => {
                   {/* <FaUserAlt size="25" /> */}
                   <img src={user.image} alt="" />
                 </div>
-              </li>
-            </ul>
-          </nav>
-        </div>
-
-        <div className="bg-[#db0034]  ">
-          <nav>
-            <ul className="flex justify-around items-center px-5 py-5 text-white">
-              <li className="cursor-pointer  hover:text-gray-500">
-                <Link to="/swm">Gestion de Hallazgos</Link>{" "}
-              </li>
-              <li className="cursor-pointer  hover:text-gray-500">
-                Documentación [Comming Soon]
-              </li>
-              <li className="cursor-pointer  hover:text-gray-500">
-                Auditorias [Comming Soon]
               </li>
             </ul>
           </nav>

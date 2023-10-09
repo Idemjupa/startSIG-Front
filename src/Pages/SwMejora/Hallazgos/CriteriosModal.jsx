@@ -42,8 +42,8 @@ const CriteriosModal = ({modal, setModal, idCriterio, setIdCriterio}) => {
   };
 
   return (
-    <div className="flex justify-center items-start overflow-x-hidden overflow-y-auto absolute inset-0 z-50 outline-none focus:outline-none bg-[#cddcf7]  ">
-      <div className="border rounded-xl max-w-2xl gap-5 max-h-none flex flex-col items-center mx-auto mt-5 px-20 py-5 bg-[#abc] drop-shadow-lg ">
+    <div className="flex justify-center items-start overflow-x-hidden overflow-y-auto absolute inset-0 z-50 outline-none focus:outline-none bg-[white]">
+      <div className="max-w-2xl gap-5 max-h-none flex flex-col items-center mx-auto mt-5 px-20 py-5 bg-[white]  ">
         <h2>CRITERIOS-EDICION</h2>
         <input
           className="drop-shadow-md p-2 border w-full"

@@ -1,7 +1,20 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import CriteriosModal from "./CriteriosModal";
 import DataTable from "react-data-table-component";
 import Swal from "sweetalert2";
+import {
+  TiChartPieOutline ,
+  TiFolderDelete,
+  TiClipboard,
+  TiGroupOutline,
+  TiThermometer,
+  TiMediaRecordOutline,
+  TiArrowRepeatOutline,
+  TiArrowMove,
+  TiZoomOutline,
+  TiEdit,
+  TiDelete,
+} from "react-icons/ti";
 
 const Criterios = () => {
   const [criterios, setCriterio] = useState([]);
@@ -14,20 +27,22 @@ const Criterios = () => {
     {
       name: "Id",
       selector: (row) => row.id,
+      sortable: true,
     },
     {
       name: "Codigo",
       selector: (row) => row.criterio,
+      sortable: true,
     },
     {
       name: "Action",
       cell: (row) => (
         <div className="flex gap-2">
           <button className="btn btn-edit" onClick={() => handleEdit(row)}>
-            Editar
+            <TiEdit size="30" />
           </button>
           <button className="btn btn-edit" onClick={() => handleDelete(row.id)}>
-            Eliminar
+            <TiDelete size="30" />
           </button>
         </div>
       ),
@@ -90,22 +105,26 @@ const Criterios = () => {
       style: {
         fontWeight: "bold",
         fontSize: "14px",
-        backgroundColor: "#ccc",
+        backgroundColor: "#FF0000",
+        color: "white",
       },
     },
   };
 
   return (
     <>
-      <h2>CRITERIOS</h2>
-      <div className="flex justify-end">
-        <button
-          className="mt-2 bg-[#5e9efc] text-white w-none p-2 drop-shadow-md"
-          onClick={handleAddCriterio}
-        >
-          Agregar Criterio
-        </button>
+      <div className="flex">
+        <TiArrowMove size="25" />
+        <TiArrowRepeatOutline  size="25"/>
+        <TiMediaRecordOutline  size="25"/>
+        <TiThermometer size="25" />
+        <TiGroupOutline size="25" />
+        <TiClipboard size="25" />
+        <TiFolderDelete size="25" />
+        <TiChartPieOutline size="25"/>
       </div>
+      <h2>CRITERIOS</h2>
+
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-5 ml-5">
         <DataTable
           customStyles={tableHeaderStyle}
@@ -120,13 +139,24 @@ const Criterios = () => {
           // actions={<button onClick={handleCSV}>Exportar a PDF</button>}
           subHeader
           subHeaderComponent={
-            <input
-              className="w-25 "
-              type="text"
-              placeholder="Buscar"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
+            <div className="w-full flex justify-center ">
+              <button
+                className="mt-2 bg-[red] text-white w-none p-2 drop-shadow-md"
+                onClick={handleAddCriterio}
+              >
+                Agregar Criterio
+              </button>
+              <div className=" mr-0 ml-auto relative">
+                <input
+                  type="text"
+                  className="w-30 border px-10 h-10"
+                  placeholder="Buscar"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+                <TiZoomOutline className="absolute left-2 top-1.5" size="30" />
+              </div>
+            </div>
           }
           subHeaderAlign="left"
         />
