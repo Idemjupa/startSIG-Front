@@ -1,5 +1,5 @@
 import imgLogo from "../../assets/logoStartSIG.png";
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaUserAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import MnServicios from "./MnServicios";

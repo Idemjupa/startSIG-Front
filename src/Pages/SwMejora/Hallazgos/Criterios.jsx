@@ -3,14 +3,6 @@ import CriteriosModal from "./CriteriosModal";
 import DataTable from "react-data-table-component";
 import Swal from "sweetalert2";
 import {
-  TiChartPieOutline ,
-  TiFolderDelete,
-  TiClipboard,
-  TiGroupOutline,
-  TiThermometer,
-  TiMediaRecordOutline,
-  TiArrowRepeatOutline,
-  TiArrowMove,
   TiZoomOutline,
   TiEdit,
   TiDelete,
@@ -105,24 +97,15 @@ const Criterios = () => {
       style: {
         fontWeight: "bold",
         fontSize: "14px",
-        backgroundColor: "#FF0000",
-        color: "white",
+        backgroundColor: "#fff5ee",
+        color: "gray",
       },
     },
   };
 
   return (
     <>
-      <div className="flex">
-        <TiArrowMove size="25" />
-        <TiArrowRepeatOutline  size="25"/>
-        <TiMediaRecordOutline  size="25"/>
-        <TiThermometer size="25" />
-        <TiGroupOutline size="25" />
-        <TiClipboard size="25" />
-        <TiFolderDelete size="25" />
-        <TiChartPieOutline size="25"/>
-      </div>
+
       <h2>CRITERIOS</h2>
 
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-5 ml-5">
@@ -139,9 +122,9 @@ const Criterios = () => {
           // actions={<button onClick={handleCSV}>Exportar a PDF</button>}
           subHeader
           subHeaderComponent={
-            <div className="w-full flex justify-center ">
+            <div className="w-full flex justify-center mb-2">
               <button
-                className="mt-2 bg-[red] text-white w-none p-2 drop-shadow-md"
+                className="mt-2 bg-[red] text-white w-none p-2 drop-shadow-md rounded-md"
                 onClick={handleAddCriterio}
               >
                 Agregar Criterio
@@ -149,13 +132,14 @@ const Criterios = () => {
               <div className=" mr-0 ml-auto relative">
                 <input
                   type="text"
-                  className="w-30 border px-10 h-10"
+                  className="w-30 border px-10 h-10 rounded-md"
                   placeholder="Buscar"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                 />
                 <TiZoomOutline className="absolute left-2 top-1.5" size="30" />
               </div>
+              
             </div>
           }
           subHeaderAlign="left"

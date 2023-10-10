@@ -1,6 +1,16 @@
-import  { useState } from "react";
+import { useState } from "react";
 // import Header from "./HeaderSWM";
 import { Link } from "react-router-dom";
+import {
+  TiChartPieOutline,
+  TiFolderDelete,
+  TiClipboard,
+  TiGroupOutline,
+  TiThermometer,
+  TiMediaRecordOutline,
+  TiArrowRepeatOutline,
+  TiArrowMove,
+} from "react-icons/ti";
 
 const MenuHallazgos = () => {
   const [menuSeleccionado, setMenu] = useState(0);
@@ -12,99 +22,98 @@ const MenuHallazgos = () => {
   return (
     <>
       <div className="flex">
-        <div className="bg-[white] text-gray py-5 min-h-screen pl-5">
-          <h3 className="text-left"> CATALOGOS</h3>
-          <ul className="text-left px-5 mb-5 menu">
-            <li
+        <div className="bg-[white] text-gray py-5 min-h-screen pl-10">
+          <div className="flex flex-col text-left">
+            <h3 className="text-left"> CATALOGOS</h3>
+            <span
               className={
-                menuSeleccionado === 1 ?
-                "font-bold pb-2 text-green-500 underline underline-offset-1 bg-green-50":""
+                menuSeleccionado === 1
+                  ? "font-bold pb-2 pt-2 text-green-500 underline underline-offset-1 bg-green-100 rounded-md flex"
+                  : "flex  pb-2 pt-3"
               }
             >
-              {" "}
+              <TiArrowRepeatOutline size="25" />
               <Link onClick={() => handleMenu(1)} to="swm-procesos">
-                Procesos
+                <span className="ml-2"> Procesos</span>
               </Link>{" "}
-            </li>
-            <li
+            </span>
+            <span
               className={
-                menuSeleccionado === 2 ?
-                "font-bold pb-2 text-green-500 underline underline-offset-1 bg-green-50":""
+                menuSeleccionado === 2
+                  ? "font-bold pb-2 pt-2 text-green-500 underline underline-offset-1 bg-green-100 rounded-md flex"
+                  : "flex  pb-2 pt-2"
               }
             >
-              {" "}
+              <TiArrowMove size="25" />
               <Link onClick={() => handleMenu(2)} to="swm-criterios">
-                {" "}
-                Criterios
+                <span className="ml-2">Criterios</span>
               </Link>
-            </li>
-            <li
+            </span>
+            <span
               className={
-                menuSeleccionado === 3 ?
-                "font-bold text-slate-200 underline underline-offset-1":""
+                menuSeleccionado === 3
+                  ? "font-bold pb-2 pt-2 text-green-500 underline underline-offset-1 bg-green-100 rounded-md flex"
+                  : "flex  pb-2 pt-2"
               }
             >
-              {" "}
+              <TiMediaRecordOutline size="25" />
               <Link onClick={() => handleMenu(3)} to="swm-origenes">
-                {" "}
-                Origenes
+                <span className="ml-2">Origenes</span>
               </Link>
-            </li>
-            <li
+            </span>
+            <span
               className={
-                menuSeleccionado === 4 ?
-                "font-bold text-slate-200 underline underline-offset-1":""
+                menuSeleccionado === 4
+                  ? "font-bold pb-2 pt-2 pr-2 text-green-500 underline underline-offset-1 bg-green-100 rounded-md flex"
+                  : "flex  pb-2 pt-2 pr-2"
               }
             >
-              {" "}
+              <TiThermometer size="25" />
               <Link onClick={() => handleMenu(4)} to="swm-niveles">
-                {" "}
-                Nivles de Hallazgos
+                <span className="ml-2">Niveles Hallazgos</span>
               </Link>
-            </li>
-            <li
+            </span>
+            <span
               className={
-                menuSeleccionado === 5 ?
-                "font-bold text-slate-200 underline underline-offset-1":""
+                menuSeleccionado === 5
+                  ? "font-bold pb-2 pt-2 pr-2 text-green-500 underline underline-offset-1 bg-green-100 rounded-md flex"
+                  : "flex  pb-2 pt-2 pr-2"
               }
             >
-              {" "}
+              <TiGroupOutline size="25" />
               <Link onClick={() => handleMenu(5)} to="swm-responsables">
-                {" "}
-                Responsables
+                <span className="ml-2">Responsables</span>
               </Link>
-            </li>
-          </ul>
-          <h3 className="text-left">HALLAZGOS</h3>
-          <ul className="text-left px-5 mb-5 menu">
-            <li
+            </span>
+            <br />
+            <h3 className="text-left">HALLAZGOS</h3>
+            <span
               className={
-                menuSeleccionado === 6 ?
-                "font-bold text-slate-200 underline underline-offset-1":""
+                menuSeleccionado === 6
+                  ? "font-bold pb-2 pt-2 pr-2 text-green-500 underline underline-offset-1 bg-green-100 rounded-md flex"
+                  : "flex  pb-2 pt-2 pr-2"
               }
             >
-              {" "}
+              <TiClipboard size="25" />
               <Link onClick={() => handleMenu(6)} to="swm-hallazgos">
-                {" "}
-                Gestionar{" "}
+                <span className="ml-2">Gestionar</span>
               </Link>
-            </li>
-          </ul>
-          <h3 className="text-left">PRESUPUESTO</h3>
-          <ul className="text-left px-5 menu">
-            <li
+            </span>
+            <br />
+            <h3 className="text-left">PRESUPUESTO</h3>
+            <span
               className={
-                menuSeleccionado === 7 ?
-                "font-bold text-slate-200 underline underline-offset-1":""
+                menuSeleccionado === 7
+                  ? "font-bold pb-2 pt-2 pr-2 text-green-500 underline underline-offset-1 bg-green-100 rounded-md flex"
+                  : "flex  pb-2 pt-2 pr-2"
               }
             >
-              {" "}
+              <TiChartPieOutline size="25" />
               <Link onClick={() => handleMenu(7)} to="swm-presupuesto">
-                {" "}
-                Presupuesto{" "}
+                <span className="ml-2">Presupuesto</span>
               </Link>
-            </li>
-          </ul>
+            </span>
+          </div>
         </div>
       </div>
     </>
