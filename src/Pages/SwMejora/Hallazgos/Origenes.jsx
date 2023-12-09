@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import OrigenesModal from "./OrigenesModal.jsx";
 import DataTable from "react-data-table-component";
 import Swal from "sweetalert2";
+import { TiZoomOutline, TiEdit, TiDelete } from "react-icons/ti";
+import {
+  fetchOrigen,
+  fetchOrigenDel,
+} from "../../../Services/swMejora/Origen";
 
 const Origenes = () => {
   const [origenes, setOrigen] = useState([]);
@@ -16,42 +21,44 @@ const Origenes = () => {
       selector: (row) => row.id,
     },
     {
-      name: "Codigo",
-      selector: (row) => row.origen,
+      name: "Origen",
+      selector: (row) => row.desorigen,
     },
     {
       name: "Action",
       cell: (row) => (
         <div className="flex gap-2">
           <button className="btn btn-edit" onClick={() => handleEdit(row)}>
-            Editar
+            <TiEdit size="30" />
           </button>
           <button className="btn btn-edit" onClick={() => handleDelete(row.id)}>
-            Eliminar
+            <TiDelete size="30" />
           </button>
         </div>
       ),
     },
   ];
 
-  const fetchOrigenes = () => {
-    const nuevo = JSON.parse(localStorage.getItem("origenesList")) || [];
-    setOrigen(nuevo);
-    setFilter(nuevo);
-  };
+
 
   useEffect(() => {
-    fetchOrigenes();
+    fetchOrigen().then((nuevo) => {
+      setOrigen(nuevo);
+      setFilter(nuevo);
+    });
   }, [modal]);
 
   useEffect(() => {
     if (search !== "") {
       const result = origenes.filter((item) => {
-        return item.origen.toLowerCase().match(search.toLocaleLowerCase());
+        return item.desorigen.toLowerCase().match(search.toLocaleLowerCase());
       });
       setFilter(result);
     } else {
-      fetchOrigenes();
+      fetchOrigen().then((nuevo) => {
+        setOrigen(nuevo);
+        setFilter(nuevo);
+      });
     }
   }, [search]);
 
@@ -74,7 +81,8 @@ const Origenes = () => {
         const nuevo = origenes.filter((row) => row.id !== value);
         setOrigen(nuevo);
         setFilter(nuevo);
-        localStorage.setItem("origenesList", JSON.stringify(nuevo));
+        const form = { id: value };
+        fetchOrigenDel(form);
 
         Swal.fire("Eliminar!", "Tu archivo ha sido eliminado .", "Eliminado");
       }
@@ -90,7 +98,8 @@ const Origenes = () => {
       style: {
         fontWeight: "bold",
         fontSize: "14px",
-        backgroundColor: "#ccc",
+        backgroundColor: "#fff5ee",
+        color: "gray",
       },
     },
   };
@@ -98,14 +107,7 @@ const Origenes = () => {
   return (
     <>
       <h2>ORIGENES</h2>
-      <div className="flex justify-end">
-        <button
-          className="mt-2 bg-[#5e9efc] text-white w-none p-2 drop-shadow-md"
-          onClick={handleAddOrigen}
-        >
-          Agregar Origen
-        </button>
-      </div>
+
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-5 ml-5">
         <DataTable
           customStyles={tableHeaderStyle}
@@ -120,13 +122,24 @@ const Origenes = () => {
           // actions={<button onClick={handleCSV}>Exportar a PDF</button>}
           subHeader
           subHeaderComponent={
-            <input
-              className="w-25 "
-              type="text"
-              placeholder="Buscar"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
+            <div className="w-full flex justify-center mb-2">
+            <button
+              className="mt-2 bg-[red] text-white w-none p-2 drop-shadow-md rounded-md"
+              onClick={handleAddOrigen}
+            >
+              Agregar Origen
+            </button>
+            <div className=" mr-0 ml-auto relative">
+              <input
+                type="text"
+                className="w-30 border px-10 h-10 rounded-md"
+                placeholder="Buscar"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <TiZoomOutline className="absolute left-2 top-1.5" size="30" />
+            </div>
+          </div>
           }
           subHeaderAlign="left"
         />

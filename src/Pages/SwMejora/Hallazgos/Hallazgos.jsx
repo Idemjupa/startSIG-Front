@@ -1,7 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import Swal from "sweetalert2";
 import HallazgosModal from "./HallazgosModal";
+import { TiZoomOutline, TiEdit, TiDelete } from "react-icons/ti";
+import {
+  fetchHallazgo,
+  fetchHallazgoDel,
+} from "../../../Services/swMejora/Hallazgo";
 
 const Hallazgos = () => {
   const [hallazgos, setHallazgo] = useState([]);
@@ -17,52 +22,52 @@ const Hallazgos = () => {
     },
     {
       name: "Fecha",
-      selector: (row) => row.fecha,
+      selector: (row) => row.fechahallazgo,
     },
     {
       name: "ProcesoId",
-      selector: (row) => row.procesoid,
-      omit:"True"
+      selector: (row) => row.procesoId,
+      omit: "True",
     },
     {
       name: "Proceso",
-      selector: (row) => row.proceso,
+      selector: (row) => row.proceso.proceso,
     },
     {
       name: "Nivelid",
-      selector: (row) => row.nivelid,
-      omit:"True"
+      selector: (row) => row.nivelhallazgoId,
+      omit: "True",
     },
     {
       name: "Nivel",
-      selector: (row) => row.nivel,
+      selector: (row) => row.nivelhallazgo.desnivelhallazgo,
     },
     {
       name: "Origenid",
-      selector: (row) => row.origenid,
-      omit:"True"
+      selector: (row) => row.origenId,
+      omit: "True",
     },
     {
       name: "Origen",
-      selector: (row) => row.origen,
+      selector: (row) => row.origen.desorigen,
     },
     {
       name: "Criterioid",
-      selector: (row) => row.criterioid,
-      omit:"True"
+      selector: (row) => row.criterioId,
+      omit: "True",
     },
     {
       name: "Criterio",
-      selector: (row) => row.criterio,
+      selector: (row) => row.criterio.descriterio,
     },
     {
       name: "Auditorid",
-      selector: (row) => row.auditorid,
-      omit:"True"
+      selector: (row) => row.usuarioId,
+      omit: "True",
     },
     {
       name: "Auditor",
-      selector: (row) => row.auditor,
+      selector: (row) => row.usuario.apenom,
     },
     {
       name: "Requisito",
@@ -77,24 +82,21 @@ const Hallazgos = () => {
       cell: (row) => (
         <div className="flex gap-2">
           <button className="btn btn-edit" onClick={() => handleEdit(row)}>
-            Editar
+            <TiEdit size="30" />
           </button>
           <button className="btn btn-edit" onClick={() => handleDelete(row.id)}>
-            Eliminar
+            <TiDelete size="30" />
           </button>
         </div>
       ),
     },
   ];
 
-  const fetchHallazgos = () => {
-    const nuevo = JSON.parse(localStorage.getItem("hallazgosList")) || [];
-    setHallazgo(nuevo);
-    setFilter(nuevo);
-  };
-
   useEffect(() => {
-    fetchHallazgos();
+    fetchHallazgo().then((nuevo) => {
+      setHallazgo(nuevo);
+      setFilter(nuevo);
+    });
   }, [modal]);
 
   useEffect(() => {
@@ -104,7 +106,10 @@ const Hallazgos = () => {
       });
       setFilter(result);
     } else {
-      fetchHallazgos();
+      fetchHallazgo().then((nuevo) => {
+        setHallazgo(nuevo);
+        setFilter(nuevo);
+      });
     }
   }, [search]);
 
@@ -127,7 +132,9 @@ const Hallazgos = () => {
         const nuevo = hallazgos.filter((row) => row.id !== value);
         setHallazgo(nuevo);
         setFilter(nuevo);
-        localStorage.setItem("hallazgosList", JSON.stringify(nuevo));
+        // localStorage.setItem("hallazgosList", JSON.stringify(nuevo));
+        const form = { id: value };
+        fetchHallazgoDel(form);
 
         Swal.fire("Eliminar!", "Tu archivo ha sido eliminaar .", "Eliminado");
       }
@@ -143,22 +150,15 @@ const Hallazgos = () => {
       style: {
         fontWeight: "bold",
         fontSize: "14px",
-        backgroundColor: "#ccc",
+        backgroundColor: "#fff5ee",
+        color: "gray",
       },
     },
   };
 
   return (
     <>
-      <h2>Gestion de Hallazgos</h2>
-      <div className="flex justify-end">
-        <button
-          className="mt-2 bg-[#5e9efc] text-white w-none p-2 drop-shadow-md"
-          onClick={handleAddHallazgo}
-        >
-          Agregar Hallazgos
-        </button>
-      </div>
+      <h2>Gestion de Hallazgos</h2>      
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-5 ml-5">
         <DataTable
           customStyles={tableHeaderStyle}
@@ -173,13 +173,24 @@ const Hallazgos = () => {
           // actions={<button onClick={handleCSV}>Exportar a PDF</button>}
           subHeader
           subHeaderComponent={
-            <input
-              className="w-25 "
-              type="text"
-              placeholder="Buscar"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
+            <div className="w-full flex justify-center mb-2">
+            <button
+              className="mt-2 bg-[red] text-white w-none p-2 drop-shadow-md rounded-md"
+              onClick={handleAddHallazgo}
+            >
+              Agregar Hallazgo
+            </button>
+            <div className=" mr-0 ml-auto relative">
+              <input
+                type="text"
+                className="w-30 border px-10 h-10 rounded-md"
+                placeholder="Buscar"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <TiZoomOutline className="absolute left-2 top-1.5" size="30" />
+            </div>
+          </div>
           }
           subHeaderAlign="left"
         />

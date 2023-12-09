@@ -1,6 +1,7 @@
-import React, { useEffect, useState, useId } from "react";
+import { useEffect, useState, useId } from "react";
 import Select from "react-select";
-
+import { fetchProcesoSave } from "../../../Services/swMejora/Proceso";
+import { fetchUsuario } from "../../../Services/swMejora/Usuario";
 const ProcesosModal = ({ modal, setModal, idProceso, setIdProceso }) => {
   const today = new Date();
   const [form, setForm] = useState(
@@ -9,14 +10,14 @@ const ProcesosModal = ({ modal, setModal, idProceso, setIdProceso }) => {
       codigo: "",
       proceso: "",
       responsable: "",
-      responsableid: "",
+      usuarioId: "",
       flgmacroproceso: false,
       macroproceso: "",
       fyhregistro: today,
     }
   );
   const [usuarios, setUsuarios] = useState([]);
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState(form.usuarioId ? {value:form.usuarioId , label:form.usuario.apenom } : null);
   const newId = useId();
   const handleChange = (e) => {
     const input = e.target;
@@ -29,17 +30,19 @@ const ProcesosModal = ({ modal, setModal, idProceso, setIdProceso }) => {
     const dataexiste = JSON.parse(localStorage.getItem("procesosList")) || [];
     let nuevo = [];
     form.fyhregistro = today;
-    form.responsableid = value.value;
+    form.usuarioId = value.value;
     form.responsable = value.label;
+
     if (form.id === undefined || form.id === "") {
       form.id = newId;
       nuevo = [...dataexiste, form];
+      fetchProcesoSave(form, "POST");
     } else {
-      console.log("Here", dataexiste);
       nuevo = dataexiste.map((current) => {
         if (form.id !== current.id) return current;
         return form;
       });
+      fetchProcesoSave(form, "PUT");
     }
     localStorage.setItem("procesosList", JSON.stringify(nuevo));
     handleLimpiar();
@@ -51,6 +54,7 @@ const ProcesosModal = ({ modal, setModal, idProceso, setIdProceso }) => {
       codigo: "",
       proceso: "",
       responsable: "",
+      usuarioId: "",
       flgmacroproceso: false,
       macroproceso: "",
     });
@@ -58,20 +62,22 @@ const ProcesosModal = ({ modal, setModal, idProceso, setIdProceso }) => {
     setIdProceso(0);
   };
   const fetchUsuarios = () => {
-    const users = JSON.parse(localStorage.getItem("usuariosList")) || [];
-    setUsuarios([]);
-    users.map((u) => {
-      const objeto = { value: u.id, label: u.apellidos + " " + u.nombres };
-      setUsuarios((prev) => [...prev, objeto]);
-    });
+    // const users = JSON.parse(localStorage.getItem("usuariosList")) || [];
+    fetchUsuario().then((users) => {
+      setUsuarios([]);
+      users.map((u) => {
+        const objeto = { value: u.id, label: u.apenom };
+        setUsuarios((prev) => [...prev, objeto]);
+      });
+    });    
   };
   useEffect(() => {
     fetchUsuarios();
   }, []);
 
   return (
-    <div className="flex justify-center items-start overflow-x-hidden overflow-y-auto absolute inset-0 z-50 outline-none focus:outline-none bg-[#cddcf7]  ">
-      <div className="border rounded-xl max-w-2xl gap-5 max-h-none flex flex-col items-center mx-auto mt-5 px-20 py-5 bg-[#abc] drop-shadow-lg ">
+    <div className="flex overflow-x-hidden overflow-y-auto absolute inset-0 z-50 outline-none focus:outline-none bg-[white]">
+      <div className="max-w-2xl gap-5 max-h-none flex flex-col items-center  mt-5 px-20 py-5 bg-[white]">
         <h2>PROCESOS-EDICION</h2>
         <input
           className="drop-shadow-md p-2 border w-full"
@@ -103,57 +109,18 @@ const ProcesosModal = ({ modal, setModal, idProceso, setIdProceso }) => {
           className="w-full text-left"
           options={usuarios}
           defaultValue={value}
-          placeholder="Selecciona Usuario"
+          placeholder="Selecciona un Responsable"
           onChange={setValue}
         />
-
-        {/* <select
-          className="drop-shadow-md p-2 border w-full"
-          name="responsable"
-          id=""
-          value={form.responsable}
-          onChange={handleChange}
-        >
-
-          <option value="vacio" selected>
-            Selecciona un responsble
-          </option>
-          {usuarios &&
-            usuarios.map((u) => {
-              return(<option key={u.id} value="jc" > {u.apellidos +" "+ u.nombres} </option>)
-            })}
-        </select> */}
-        {/* <div >
-          <input
-            className="drop-shadow-md p-2 border"
-            type="checkbox"
-            name="flgmacroproceso"
-            value={form.flgmacroproceso}
-            onChange={handleChange}
-          />{" "}
-          Es MacroProceso
-        </div>
-        <select
-          className="drop-shadow-md p-2 border w-full"
-          name="macroproceso"
-          id=""
-          value={form.macroproceso}
-          onChange={handleChange}
-        >
-          <option value="empty" selected>
-            Selecciona un Macro Proceso
-          </option>
-          <option value="pe01">PE 01 GC FACTURACION</option>
-        </select> */}
-        <div className="flex gap-5">
+        <div className="flex justify-end gap-5 w-full">
           <button
-            className="mt-2 bg-[#5e9efc] text-white w-none p-2 drop-shadow-md"
+            className="mt-2 bg-[red] text-white w-none p-2 drop-shadow-md  rounded-md"
             onClick={handleLimpiar}
           >
             Cancelar
           </button>
           <button
-            className="mt-2 bg-[#5e9efc] text-white w-none p-2 drop-shadow-md"
+            className="mt-2 bg-[red] text-white w-none p-2 drop-shadow-md rounded-md"
             onClick={handleAddProceso}
           >
             Guardar

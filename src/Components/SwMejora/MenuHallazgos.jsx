@@ -99,7 +99,7 @@ const MenuHallazgos = () => {
                 <span className="ml-2">Gestionar</span>
               </Link>
             </span>
-            <br />
+            {/* <br />
             <h3 className="text-left">PRESUPUESTO</h3>
             <span
               className={
@@ -112,7 +112,7 @@ const MenuHallazgos = () => {
               <Link onClick={() => handleMenu(7)} to="swm-presupuesto">
                 <span className="ml-2">Presupuesto</span>
               </Link>
-            </span>
+            </span> */}
           </div>
         </div>
       </div>

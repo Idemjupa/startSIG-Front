@@ -2,11 +2,12 @@ import { useState, useEffect } from "react";
 import CriteriosModal from "./CriteriosModal";
 import DataTable from "react-data-table-component";
 import Swal from "sweetalert2";
+import { TiZoomOutline, TiEdit, TiDelete } from "react-icons/ti";
+// nuevo
 import {
-  TiZoomOutline,
-  TiEdit,
-  TiDelete,
-} from "react-icons/ti";
+  fetchCriterio,
+  fetchCriterioDel,
+} from "../../../Services/swMejora/Criterio";
 
 const Criterios = () => {
   const [criterios, setCriterio] = useState([]);
@@ -22,8 +23,8 @@ const Criterios = () => {
       sortable: true,
     },
     {
-      name: "Codigo",
-      selector: (row) => row.criterio,
+      name: "Criterio",
+      selector: (row) => row.descriterio,
       sortable: true,
     },
     {
@@ -41,24 +42,25 @@ const Criterios = () => {
     },
   ];
 
-  const fetchCriterios = () => {
-    const nuevo = JSON.parse(localStorage.getItem("criteriosList")) || [];
-    setCriterio(nuevo);
-    setFilter(nuevo);
-  };
-
   useEffect(() => {
-    fetchCriterios();
+    fetchCriterio().then((nuevo) => {
+      setCriterio(nuevo);
+      setFilter(nuevo);
+    });
   }, [modal]);
 
   useEffect(() => {
+    
     if (search !== "") {
-      const result = criterios.filter((item) => {
-        return item.criterio.toLowerCase().match(search.toLocaleLowerCase());
+      const result = criterios.filter((item) => {        
+        return item.descriterio.toLowerCase().match(search.toLocaleLowerCase());
       });
       setFilter(result);
     } else {
-      fetchCriterios();
+      fetchCriterio().then((nuevo) => {
+        setCriterio(nuevo);
+        setFilter(nuevo);
+      });
     }
   }, [search]);
 
@@ -81,7 +83,9 @@ const Criterios = () => {
         const nuevo = criterios.filter((row) => row.id !== value);
         setCriterio(nuevo);
         setFilter(nuevo);
-        localStorage.setItem("criteriosList", JSON.stringify(nuevo));
+        // localStorage.setItem("criteriosList", JSON.stringify(nuevo));
+        const form = { id: value };
+        fetchCriterioDel(form);
 
         Swal.fire("Eliminar!", "Tu archivo ha sido eliminado .", "Eliminado");
       }
@@ -105,7 +109,6 @@ const Criterios = () => {
 
   return (
     <>
-
       <h2>CRITERIOS</h2>
 
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-5 ml-5">
@@ -139,7 +142,6 @@ const Criterios = () => {
                 />
                 <TiZoomOutline className="absolute left-2 top-1.5" size="30" />
               </div>
-              
             </div>
           }
           subHeaderAlign="left"

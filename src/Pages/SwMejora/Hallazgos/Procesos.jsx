@@ -1,7 +1,13 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ProcesosModal from "./ProcesosModal";
 import DataTable from "react-data-table-component";
 import Swal from "sweetalert2";
+import { TiZoomOutline, TiEdit, TiDelete } from "react-icons/ti";
+
+import {
+  fetchProceso,
+  fetchProcesoDel,
+} from "../../../Services/swMejora/Proceso";
 
 const Procesos = () => {
   const [procesos, setProceso] = useState([]);
@@ -9,7 +15,6 @@ const Procesos = () => {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState([]);
   const [idProceso, setIdProceso] = useState({});
-
 
   const columns = [
     {
@@ -26,35 +31,28 @@ const Procesos = () => {
     },
     {
       name: "Responsable",
-      selector: (row) => row.responsable,
-    },
-    {
-      name: "fyhRegistro",
-      selector: (row) => row.fyhregistro,
+      selector: (row) => row.usuario.apenom,
     },
     {
       name: "Action",
       cell: (row) => (
         <div className="flex gap-2">
           <button className="btn btn-edit" onClick={() => handleEdit(row)}>
-            Editar
+            <TiEdit size="30" />
           </button>
           <button className="btn btn-edit" onClick={() => handleDelete(row.id)}>
-            Eliminar
+            <TiDelete size="30" />
           </button>
         </div>
       ),
     },
   ];
 
-  const fetchProcesos = () => {
-    const nuevo = JSON.parse(localStorage.getItem("procesosList")) || [];
-    setProceso(nuevo);
-    setFilter(nuevo);
-  };
-
   useEffect(() => {
-    fetchProcesos();
+    fetchProceso().then((nuevo) => {
+      setProceso(nuevo);
+      setFilter(nuevo);
+    });
   }, [modal]);
 
   useEffect(() => {
@@ -64,7 +62,10 @@ const Procesos = () => {
       });
       setFilter(result);
     } else {
-      fetchProcesos();
+      fetchProceso().then((nuevo) => {
+        setProceso(nuevo);
+        setFilter(nuevo);
+      });
     }
   }, [search]);
 
@@ -87,7 +88,9 @@ const Procesos = () => {
         const nuevo = procesos.filter((row) => row.id !== value);
         setProceso(nuevo);
         setFilter(nuevo);
-        localStorage.setItem("procesosList", JSON.stringify(nuevo));
+        // localStorage.setItem("procesosList", JSON.stringify(nuevo));
+        const form = { id: value };
+        fetchProcesoDel(form);
 
         Swal.fire("Eliminar!", "Tu archivo ha sido eliminaar .", "Eliminado");
       }
@@ -103,7 +106,8 @@ const Procesos = () => {
       style: {
         fontWeight: "bold",
         fontSize: "14px",
-        backgroundColor: "#ccc",
+        backgroundColor: "#fff5ee",
+        color: "gray",
       },
     },
   };
@@ -111,14 +115,6 @@ const Procesos = () => {
   return (
     <>
       <h2>PROCESOS</h2>
-      <div className="flex justify-end">
-        <button
-          className="mt-2 bg-[#5e9efc] text-white w-none p-2 drop-shadow-md"
-          onClick={handleAddProceso}
-        >
-          Agregar Proceso
-        </button>
-      </div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-5 ml-5">
         <DataTable
           customStyles={tableHeaderStyle}
@@ -133,13 +129,24 @@ const Procesos = () => {
           // actions={<button onClick={handleCSV}>Exportar a PDF</button>}
           subHeader
           subHeaderComponent={
-            <input
-              className="w-25 "
-              type="text"
-              placeholder="Buscar"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
+            <div className="w-full flex justify-center mb-2">
+              <button
+                className="mt-2 bg-[red] text-white w-none p-2 drop-shadow-md rounded-md"
+                onClick={handleAddProceso}
+              >
+                Agregar Proceso
+              </button>
+              <div className=" mr-0 ml-auto relative">
+                <input
+                  type="text"
+                  className="w-30 border px-10 h-10 rounded-md"
+                  placeholder="Buscar"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+                <TiZoomOutline className="absolute left-2 top-1.5" size="30" />
+              </div>
+            </div>
           }
           subHeaderAlign="left"
         />

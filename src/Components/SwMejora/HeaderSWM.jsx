@@ -40,7 +40,7 @@ const Header = () => {
           <nav className="w-64">
             <ul className="flex justify-between gap-5 items-center">
               <li className="cursor-pointer  hover:text-gray-500 flex flex-col text-right">
-                <span className="text-[#142338]"> {user.username} </span>
+                <span className="text-[#142338]"> {user.login} </span>
 
                 <button className="font-bold" onClick={handleLogOut}>
                   {" "}

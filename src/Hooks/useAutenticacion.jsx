@@ -7,6 +7,7 @@ const useAuth = () => {
   const isAuth = Boolean(user?.token);
   const setAuth = (user) => {
     setUser(user);
+    console.log("Este es el objeto usuario",user)
     localStorage.setItem("auth", JSON.stringify(user));
   };
   const logOut = () => {
